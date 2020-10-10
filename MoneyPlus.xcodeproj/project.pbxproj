@@ -7,15 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F9ADA4C654C462E5B4D53CE /* libPods-MoneyPlus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DECDF8B4B5FCF34129B3B63D /* libPods-MoneyPlus.a */; };
 		E295EDA52531DFCD001845BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E295EDA42531DFCD001845BF /* AppDelegate.swift */; };
 		E295EDA72531DFCD001845BF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E295EDA62531DFCD001845BF /* SceneDelegate.swift */; };
 		E295EDA92531DFCD001845BF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E295EDA82531DFCD001845BF /* ViewController.swift */; };
 		E295EDAC2531DFCD001845BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E295EDAA2531DFCD001845BF /* Main.storyboard */; };
 		E295EDAE2531DFCE001845BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E295EDAD2531DFCE001845BF /* Assets.xcassets */; };
 		E295EDB12531DFCE001845BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E295EDAF2531DFCE001845BF /* LaunchScreen.storyboard */; };
+		E2E5712325321C5100FEBBC8 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E5712225321C5100FEBBC8 /* AppConstants.swift */; };
+		E2FBB90D253241E000DA1A5F /* NewRecordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FBB90C253241E000DA1A5F /* NewRecordVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		30F938CEA7B42C2F6C2128FB /* Pods-MoneyPlus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoneyPlus.debug.xcconfig"; path = "Target Support Files/Pods-MoneyPlus/Pods-MoneyPlus.debug.xcconfig"; sourceTree = "<group>"; };
+		5C66062BE55C271282555AEB /* Pods-MoneyPlus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoneyPlus.release.xcconfig"; path = "Target Support Files/Pods-MoneyPlus/Pods-MoneyPlus.release.xcconfig"; sourceTree = "<group>"; };
+		DECDF8B4B5FCF34129B3B63D /* libPods-MoneyPlus.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MoneyPlus.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E295EDA12531DFCD001845BF /* MoneyPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoneyPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E295EDA42531DFCD001845BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E295EDA62531DFCD001845BF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +30,8 @@
 		E295EDAD2531DFCE001845BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E295EDB02531DFCE001845BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E295EDB22531DFCE001845BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E2E5712225321C5100FEBBC8 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		E2FBB90C253241E000DA1A5F /* NewRecordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRecordVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +39,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F9ADA4C654C462E5B4D53CE /* libPods-MoneyPlus.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2993E0E602FA73D450C50119 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				30F938CEA7B42C2F6C2128FB /* Pods-MoneyPlus.debug.xcconfig */,
+				5C66062BE55C271282555AEB /* Pods-MoneyPlus.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		56882E087E706A783CF22A07 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DECDF8B4B5FCF34129B3B63D /* libPods-MoneyPlus.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E295ED982531DFCD001845BF = {
 			isa = PBXGroup;
 			children = (
 				E295EDA32531DFCD001845BF /* MoneyPlus */,
 				E295EDA22531DFCD001845BF /* Products */,
+				2993E0E602FA73D450C50119 /* Pods */,
+				56882E087E706A783CF22A07 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +84,49 @@
 		E295EDA32531DFCD001845BF /* MoneyPlus */ = {
 			isa = PBXGroup;
 			children = (
+				E2E5712125321C4400FEBBC8 /* Utils */,
+				E295EDBC2531E0ED001845BF /* Supporting Files */,
+				E295EDBB2531E0E2001845BF /* Controller */,
+				E295EDBA2531E0DB001845BF /* Delegate */,
+			);
+			path = MoneyPlus;
+			sourceTree = "<group>";
+		};
+		E295EDBA2531E0DB001845BF /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
 				E295EDA42531DFCD001845BF /* AppDelegate.swift */,
 				E295EDA62531DFCD001845BF /* SceneDelegate.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
+		E295EDBB2531E0E2001845BF /* Controller */ = {
+			isa = PBXGroup;
+			children = (
 				E295EDA82531DFCD001845BF /* ViewController.swift */,
+				E2FBB90C253241E000DA1A5F /* NewRecordVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E295EDBC2531E0ED001845BF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
 				E295EDAA2531DFCD001845BF /* Main.storyboard */,
 				E295EDAD2531DFCE001845BF /* Assets.xcassets */,
 				E295EDAF2531DFCE001845BF /* LaunchScreen.storyboard */,
 				E295EDB22531DFCE001845BF /* Info.plist */,
 			);
-			path = MoneyPlus;
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E2E5712125321C4400FEBBC8 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				E2E5712225321C5100FEBBC8 /* AppConstants.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,6 +136,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E295EDB52531DFCE001845BF /* Build configuration list for PBXNativeTarget "MoneyPlus" */;
 			buildPhases = (
+				AF8A86665E8E31864EC88A6F /* [CP] Check Pods Manifest.lock */,
 				E295ED9D2531DFCD001845BF /* Sources */,
 				E295ED9E2531DFCD001845BF /* Frameworks */,
 				E295ED9F2531DFCD001845BF /* Resources */,
@@ -132,6 +195,31 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		AF8A86665E8E31864EC88A6F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MoneyPlus-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E295ED9D2531DFCD001845BF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -139,7 +227,9 @@
 			files = (
 				E295EDA92531DFCD001845BF /* ViewController.swift in Sources */,
 				E295EDA52531DFCD001845BF /* AppDelegate.swift in Sources */,
+				E2FBB90D253241E000DA1A5F /* NewRecordVC.swift in Sources */,
 				E295EDA72531DFCD001845BF /* SceneDelegate.swift in Sources */,
+				E2E5712325321C5100FEBBC8 /* AppConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,7 +306,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -271,7 +361,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -283,12 +373,13 @@
 		};
 		E295EDB62531DFCE001845BF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 30F938CEA7B42C2F6C2128FB /* Pods-MoneyPlus.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3C72863SBG;
-				INFOPLIST_FILE = MoneyPlus/Info.plist;
+				INFOPLIST_FILE = "MoneyPlus/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -296,18 +387,19 @@
 				PRODUCT_BUNDLE_IDENTIFIER = site.waitforaday.MoneyPlus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		E295EDB72531DFCE001845BF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5C66062BE55C271282555AEB /* Pods-MoneyPlus.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3C72863SBG;
-				INFOPLIST_FILE = MoneyPlus/Info.plist;
+				INFOPLIST_FILE = "MoneyPlus/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -315,7 +407,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = site.waitforaday.MoneyPlus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
