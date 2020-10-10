@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import CoreData
 
 class ViewController: UIViewController {
 
@@ -23,6 +24,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         initNavSetting()
         initLayout()
+        recordsListView.reloadData()
     }
 
     private let totalBalanceView: UIView = {
@@ -157,8 +159,33 @@ class ViewController: UIViewController {
     @objc func addDidTap() {
         let newVC = NewRecordVC()
         newVC.title = "New Record"
+        newVC.updateRootVCData = {
+            DispatchQueue.main.async {
+                self.updateRecordListView()
+            }
+        }
         let navVC = UINavigationController(rootViewController: newVC)
         present(navVC, animated: true)
+    }
+    
+    func updateRecordListView() {
+        recordsList.removeAll()
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "RecordEntity")
+
+        do {
+            let result = try managedContext.fetch(fetchRequest)
+            for data in result as! [NSManagedObject] {
+                let str = data.value(forKey: "title") as! String
+                recordsList.append(str)
+            }
+        } catch let error as NSError {
+            print("Could not retrieve. \(error), \(error.userInfo)")
+        }
+        
+        recordsListView.reloadData()
     }
     
     func initLayout() {
@@ -222,7 +249,7 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("emmm")
+        
     }
     
 }
@@ -235,7 +262,7 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "hi\(indexPath.row)"
+        cell.textLabel?.text = "\(recordsList[indexPath.row])"
         return cell
     }
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4F9ADA4C654C462E5B4D53CE /* libPods-MoneyPlus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DECDF8B4B5FCF34129B3B63D /* libPods-MoneyPlus.a */; };
+		E22DE9F525326C240000E391 /* RecordData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E22DE9F325326C240000E391 /* RecordData.xcdatamodeld */; };
 		E295EDA52531DFCD001845BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E295EDA42531DFCD001845BF /* AppDelegate.swift */; };
 		E295EDA72531DFCD001845BF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E295EDA62531DFCD001845BF /* SceneDelegate.swift */; };
 		E295EDA92531DFCD001845BF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E295EDA82531DFCD001845BF /* ViewController.swift */; };
@@ -22,6 +23,7 @@
 		30F938CEA7B42C2F6C2128FB /* Pods-MoneyPlus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoneyPlus.debug.xcconfig"; path = "Target Support Files/Pods-MoneyPlus/Pods-MoneyPlus.debug.xcconfig"; sourceTree = "<group>"; };
 		5C66062BE55C271282555AEB /* Pods-MoneyPlus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoneyPlus.release.xcconfig"; path = "Target Support Files/Pods-MoneyPlus/Pods-MoneyPlus.release.xcconfig"; sourceTree = "<group>"; };
 		DECDF8B4B5FCF34129B3B63D /* libPods-MoneyPlus.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MoneyPlus.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E22DE9F425326C240000E391 /* RecordData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RecordData.xcdatamodel; sourceTree = "<group>"; };
 		E295EDA12531DFCD001845BF /* MoneyPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoneyPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E295EDA42531DFCD001845BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E295EDA62531DFCD001845BF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				E2E5712225321C5100FEBBC8 /* AppConstants.swift */,
+				E22DE9F325326C240000E391 /* RecordData.xcdatamodeld */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E22DE9F525326C240000E391 /* RecordData.xcdatamodeld in Sources */,
 				E295EDA92531DFCD001845BF /* ViewController.swift in Sources */,
 				E295EDA52531DFCD001845BF /* AppDelegate.swift in Sources */,
 				E2FBB90D253241E000DA1A5F /* NewRecordVC.swift in Sources */,
@@ -433,6 +437,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E22DE9F325326C240000E391 /* RecordData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E22DE9F425326C240000E391 /* RecordData.xcdatamodel */,
+			);
+			currentVersion = E22DE9F425326C240000E391 /* RecordData.xcdatamodel */;
+			path = RecordData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = E295ED992531DFCD001845BF /* Project object */;
 }

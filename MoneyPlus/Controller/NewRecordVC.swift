@@ -7,8 +7,16 @@
 
 import UIKit
 import SnapKit
+import CoreData
+
+enum RecordType: Int32 {
+    case income = 0
+    case expense = 1
+}
 
 class NewRecordVC: UIViewController, UITextFieldDelegate {
+    
+    var updateRootVCData: (() -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,6 +24,18 @@ class NewRecordVC: UIViewController, UITextFieldDelegate {
         initLayout()
     }
     
+    @objc func closeDidTap() {
+        dismiss(animated: true)
+    }
+    
+    @objc func didTapConfirm() {
+        if (createData() == true) {
+            updateRootVCData?()
+            dismiss(animated: true)
+        }
+    }
+    
+    // below: nav
     func initNavSetting() {
         edgesForExtendedLayout = UIRectEdge.bottom
         navigationController?.navigationBar.backgroundColor = .white
@@ -26,10 +46,7 @@ class NewRecordVC: UIViewController, UITextFieldDelegate {
         navigationItem.rightBarButtonItem?.tintColor = AppConstants.kBlackColor
     }
     
-    @objc func closeDidTap() {
-        dismiss(animated: true)
-    }
-    
+    // below: layout
     func initLayout() {
         view.addSubview(typeLabel)
         view.addSubview(typeControl)
@@ -55,7 +72,7 @@ class NewRecordVC: UIViewController, UITextFieldDelegate {
         detailInputField.delegate = self
         
         view.addSubview(confirmBtn)
-        
+        confirmBtn.addTarget(self, action: #selector(didTapConfirm), for: .touchUpInside)
         
         let margin: Float = Float(AppConstants.kViewMargin)
         
@@ -136,6 +153,7 @@ class NewRecordVC: UIViewController, UITextFieldDelegate {
         }
     }
     
+    // below: UI config
     private let typeControl: UISegmentedControl = {
         let items = ["Income", "Expense"]
         let sc = UISegmentedControl(items: items)
@@ -262,4 +280,93 @@ class NewRecordVC: UIViewController, UITextFieldDelegate {
         button.layer.cornerRadius = AppConstants.kTextFieldCornerRadius
         return button
     }()
+    
+    func createData() -> Bool{
+        if (titleInputField.text == "") {
+            alertWithMessage(message: "Title can not be empty")
+            return false
+        }
+        if (dateInputField.text == "") {
+            alertWithMessage(message: "Date can not be empty")
+            return false
+        }
+        if (amountInputField.text == "") {
+            alertWithMessage(message: "Amount can not be empty")
+            return false
+        }
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return false }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let recordEntity = NSEntityDescription.entity(forEntityName: "RecordEntity", in: managedContext)!
+
+        let obj = NSManagedObject(entity: recordEntity, insertInto: managedContext)
+        obj.setValue(Int32(typeControl.selectedSegmentIndex), forKeyPath: "type")
+        obj.setValue(titleInputField.text, forKeyPath: "title")
+        obj.setValue(dateInputField.text, forKeyPath: "date")
+        obj.setValue(Double(amountInputField.text!), forKeyPath: "amount")
+        obj.setValue(locationInputField.text, forKeyPath: "location")
+        obj.setValue(detailInputField.text, forKeyPath: "detail")
+
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+            return false
+        }
+        
+        return true
+    }
+    
+    // below: CoreData function related
+    func updateData() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "User")
+        fetchRequest.predicate = NSPredicate(format: "username = %@", "Ankur1")
+        
+        do {
+            let test = try managedContext.fetch(fetchRequest)
+            let objectUpdate = test[0] as! NSManagedObject
+            objectUpdate.setValue("newName", forKey: "username")
+            objectUpdate.setValue("newmail", forKey: "email")
+            objectUpdate.setValue("newpassword", forKey: "password")
+            
+            do {
+                try managedContext.save()
+            } catch let error as NSError {
+                print("Could not update. \(error), \(error.userInfo)")
+            }
+        } catch let error as NSError {
+            print("Could not update. \(error), \(error.userInfo)")
+        }
+   
+    }
+    
+     func deleteData() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+        fetchRequest.predicate = NSPredicate(format: "username = %@", "Ankur3")
+       
+        do {
+            let test = try managedContext.fetch(fetchRequest)
+            let objectToDelete = test[0] as! NSManagedObject
+            managedContext.delete(objectToDelete)
+            
+            do {
+                try managedContext.save()
+            } catch {
+                print(error)
+            }
+        } catch {
+            print(error)
+        }
+    }
+    
+    func alertWithMessage(message: String) {
+        let alert = UIAlertController(title: "Oh", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Got it !", style: .default, handler: nil))
+        self.present(alert, animated: true)
+    }
+    
 }
