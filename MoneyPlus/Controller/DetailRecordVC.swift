@@ -43,7 +43,8 @@ class DetailRecordVC: UIViewController, UITextFieldDelegate {
         mainInfoView.addSubview(dateLabel)
         dateLabel.text = recordEntity!.value(forKey: "date") as? String
         mainInfoView.addSubview(amountLabel)
-        amountLabel.text = "$" + String((recordEntity!.value(forKey: "amount") as? Double)!)
+        let type = recordEntity!.value(forKey: "type") as? Int32
+        amountLabel.text = (type == 0 ? "+"  :"-") + "$" + String((recordEntity!.value(forKey: "amount") as? Double)!)
         
         view.addSubview(locationLabel)
         locationLabel.text = "location    : " + String((recordEntity!.value(forKey: "location") as? String)!)

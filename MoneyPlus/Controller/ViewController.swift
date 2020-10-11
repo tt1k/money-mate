@@ -12,6 +12,9 @@ import CoreData
 class ViewController: UIViewController {
 
     var recordsList = [NSManagedObject]()
+    var income: Double = 0
+    var expense: Double = 0
+    var totalBalance: Double = 0
     
     private let recordsListView: UITableView = {
         let table = UITableView()
@@ -23,9 +26,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateRecordListView()
         initNavSetting()
         initLayout()
-        updateRecordListView()
     }
 
     private let totalBalanceView: UIView = {
@@ -43,19 +46,16 @@ class ViewController: UIViewController {
             make.centerX.equalTo(view)
             make.top.equalTo(view.snp.top).offset(20)
         }
-
+        
+        return view
+    }()
+    
+    private let totalBalanceViewAmountLabel: UILabel = {
         let balance = UILabel()
         balance.text = "$0"
         balance.font = UIFont.systemFont(ofSize: 50, weight: UIFont.Weight.bold)
         balance.textColor = AppConstants.kWhiteColor
-        view.addSubview(balance)
-        
-        balance.snp.makeConstraints { (make) -> Void in
-            make.centerX.equalTo(view)
-            make.top.equalTo(title.snp.bottom).offset(10)
-        }
-        
-        return view
+        return balance
     }()
     
     private let incomeView: UIView = {
@@ -74,18 +74,15 @@ class ViewController: UIViewController {
             make.top.equalTo(view.snp.top).offset(20)
         }
 
+        return view
+    }()
+    
+    private let incomeViewAmountLabel: UILabel = {
         let balance = UILabel()
-        balance.text = "$0"
+        balance.text = "+$0"
         balance.font = UIFont.systemFont(ofSize: 36, weight: UIFont.Weight.bold)
         balance.textColor = AppConstants.kWhiteColor
-        view.addSubview(balance)
-        
-        balance.snp.makeConstraints { (make) -> Void in
-            make.centerX.equalTo(view)
-            make.top.equalTo(title.snp.bottom).offset(10)
-        }
-        
-        return view
+        return balance
     }()
     
     private let expenseView: UIView = {
@@ -103,19 +100,16 @@ class ViewController: UIViewController {
             make.centerX.equalTo(view)
             make.top.equalTo(view.snp.top).offset(20)
         }
-
-        let balance = UILabel()
-        balance.text = "$0"
-        balance.font = UIFont.systemFont(ofSize: 36, weight: UIFont.Weight.bold)
-        balance.textColor = AppConstants.kWhiteColor
-        view.addSubview(balance)
-        
-        balance.snp.makeConstraints { (make) -> Void in
-            make.centerX.equalTo(view)
-            make.top.equalTo(title.snp.bottom).offset(10)
-        }
         
         return view
+    }()
+    
+    private let expenseViewAmountLabel: UILabel = {
+        let balance = UILabel()
+        balance.text = "-$0"
+        balance.font = UIFont.systemFont(ofSize: 36, weight: UIFont.Weight.bold)
+        balance.textColor = AppConstants.kWhiteColor
+        return balance
     }()
     
     private let recentTransactionsView: UIView = {
@@ -180,7 +174,19 @@ class ViewController: UIViewController {
             let result = try managedContext.fetch(fetchRequest)
             for data in result as! [NSManagedObject] {
                 recordsList.append(data)
+                let type = data.value(forKey: "type") as? Int32
+                let amount = (data.value(forKey: "amount") as? Double)!
+                if (type == 0) {
+                    income += amount
+                    totalBalance += amount
+                } else {
+                    expense += amount
+                    totalBalance -= amount
+                }
             }
+            expenseViewAmountLabel.text = "-$\(expense)"
+            incomeViewAmountLabel.text = "+$\(income)"
+            totalBalanceViewAmountLabel.text = "$\(totalBalance)"
         } catch let error as NSError {
             print("Could not retrieve. \(error), \(error.userInfo)")
         }
@@ -207,6 +213,11 @@ class ViewController: UIViewController {
             make.left.equalTo(margin)
             make.right.equalTo(-margin)
         }
+        totalBalanceView.addSubview(totalBalanceViewAmountLabel)
+        totalBalanceViewAmountLabel.snp.makeConstraints { (make) -> Void in
+            make.centerX.equalTo(totalBalanceView.snp.centerX)
+            make.bottom.equalTo(totalBalanceView.snp.bottom).offset(-margin)
+        }
         
         let incomeViewSize: Float = (Float(AppConstants.kScreenWidth) - margin * 3) / 2
         let incomeViewHeight: Float = 120
@@ -216,6 +227,11 @@ class ViewController: UIViewController {
             make.top.equalTo(totalBalanceView.snp.bottom).offset(margin)
             make.left.equalTo(margin)
         }
+        incomeView.addSubview(incomeViewAmountLabel)
+        incomeViewAmountLabel.snp.makeConstraints { (make) -> Void in
+            make.centerX.equalTo(incomeView.snp.centerX)
+            make.bottom.equalTo(incomeView.snp.bottom).offset(-margin)
+        }
         
         let expenseViewSize: Float = incomeViewSize
         let expenseViewHeight: Float = incomeViewHeight
@@ -224,6 +240,11 @@ class ViewController: UIViewController {
             make.height.equalTo(expenseViewHeight)
             make.top.equalTo(totalBalanceView.snp.bottom).offset(margin)
             make.right.equalTo(-margin)
+        }
+        expenseView.addSubview(expenseViewAmountLabel)
+        expenseViewAmountLabel.snp.makeConstraints { (make) -> Void in
+            make.centerX.equalTo(expenseView.snp.centerX)
+            make.bottom.equalTo(expenseView.snp.bottom).offset(-margin)
         }
         
         let recentTransactionsViewHeight: Float = 50
@@ -275,9 +296,18 @@ extension ViewController: UITableViewDataSource {
         cell.layer.cornerRadius = AppConstants.kCornerRadius / 2
         cell.titleLabel.text = recordsList[indexPath.row].value(forKey: "title") as? String
         cell.dateLabel.text = recordsList[indexPath.row].value(forKey: "date") as? String
-        cell.amountLabel.text = "$" + String((recordsList[indexPath.row].value(forKey: "amount") as? Double)!)
+        let type = recordsList[indexPath.row].value(forKey: "type") as? Int32
+        cell.amountLabel.text = (type == 0 ? "+"  :"-") + "$" + String((recordsList[indexPath.row].value(forKey: "amount") as? Double)!)
         cell.selectionStyle = .none
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerLabel = UILabel()
+        footerLabel.text = "That's all"
+        footerLabel.textAlignment = NSTextAlignment.center
+        footerLabel.textColor = AppConstants.kLightGrayColor
+        return footerLabel
     }
 
 }
