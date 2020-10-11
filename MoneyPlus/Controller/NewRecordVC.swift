@@ -14,7 +14,7 @@ enum RecordType: Int32 {
     case expense = 1
 }
 
-class NewRecordVC: UIViewController, UITextFieldDelegate {
+class NewRecordVC: UIViewController {
     
     var updateRootVCData: (() -> Void)?
     
@@ -55,6 +55,7 @@ class NewRecordVC: UIViewController, UITextFieldDelegate {
         view.addSubview(titleLabel)
         view.addSubview(titleInputField)
         titleInputField.delegate = self
+        titleInputField.becomeFirstResponder()
         
         view.addSubview(dateLabel)
         view.addSubview(dateInputField)
@@ -339,6 +340,14 @@ class NewRecordVC: UIViewController, UITextFieldDelegate {
         let alert = UIAlertController(title: "Oh", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Got it !", style: .default, handler: nil))
         self.present(alert, animated: true)
+    }
+    
+}
+
+extension NewRecordVC: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
     }
     
 }
