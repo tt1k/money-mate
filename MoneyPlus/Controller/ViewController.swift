@@ -11,7 +11,7 @@ import CoreData
 
 class ViewController: UIViewController {
 
-    var recordsList = [String]()
+    var recordsList = [NSManagedObject]()
     
     private let recordsListView: UITableView = {
         let table = UITableView()
@@ -24,7 +24,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         initNavSetting()
         initLayout()
-        recordsListView.reloadData()
+        updateRecordListView()
     }
 
     private let totalBalanceView: UIView = {
@@ -178,8 +178,7 @@ class ViewController: UIViewController {
         do {
             let result = try managedContext.fetch(fetchRequest)
             for data in result as! [NSManagedObject] {
-                let str = data.value(forKey: "title") as! String
-                recordsList.append(str)
+                recordsList.append(data)
             }
         } catch let error as NSError {
             print("Could not retrieve. \(error), \(error.userInfo)")
@@ -249,7 +248,11 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let detailVC = DetailRecordVC()
+        detailVC.title = "Record Detail"
+        detailVC.recordEntity = recordsList[indexPath.row]
+        let navVC = UINavigationController(rootViewController: detailVC)
+        present(navVC, animated: true)
     }
     
 }
@@ -262,7 +265,7 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "\(recordsList[indexPath.row])"
+        cell.textLabel?.text = "\(recordsList[indexPath.row].value(forKey: "title") as! String)"
         return cell
     }
 }
