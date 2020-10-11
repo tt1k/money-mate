@@ -179,6 +179,7 @@ class NewRecordVC: UIViewController, UITextFieldDelegate {
     private let titleInputField: UITextField = {
         let field = UITextField()
         field.font = AppConstants.kTitleFont
+        field.placeholder = "Enter your record"
         field.layer.borderWidth = 1
         field.layer.borderColor = AppConstants.kLightGrayColor.cgColor
         field.layer.cornerRadius = AppConstants.kTextFieldCornerRadius
@@ -196,8 +197,13 @@ class NewRecordVC: UIViewController, UITextFieldDelegate {
     }()
     
     private let dateInputField: UITextField = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd"
+        let str = dateFormatter.string(from: Date())
+        
         let field = UITextField()
         field.font = AppConstants.kTitleFont
+        field.text = str
         field.layer.borderWidth = 1
         field.layer.borderColor = AppConstants.kLightGrayColor.cgColor
         field.layer.cornerRadius = AppConstants.kTextFieldCornerRadius
@@ -217,6 +223,7 @@ class NewRecordVC: UIViewController, UITextFieldDelegate {
     private let amountInputField: UITextField = {
         let field = UITextField()
         field.font = AppConstants.kTitleFont
+        field.text = "0.0"
         field.layer.borderWidth = 1
         field.layer.borderColor = AppConstants.kLightGrayColor.cgColor
         field.layer.cornerRadius = AppConstants.kTextFieldCornerRadius
@@ -244,6 +251,7 @@ class NewRecordVC: UIViewController, UITextFieldDelegate {
     private let locationInputField: UITextField = {
         let field = UITextField()
         field.font = AppConstants.kTitleFont
+        field.placeholder = "Happens where"
         field.layer.borderWidth = 1
         field.layer.borderColor = AppConstants.kLightGrayColor.cgColor
         field.layer.cornerRadius = AppConstants.kTextFieldCornerRadius
@@ -263,6 +271,7 @@ class NewRecordVC: UIViewController, UITextFieldDelegate {
     private let detailInputField: UITextField = {
         let field = UITextField()
         field.font = AppConstants.kTitleFont
+        field.placeholder = "Other note"
         field.layer.borderWidth = 1
         field.layer.borderColor = AppConstants.kLightGrayColor.cgColor
         field.layer.cornerRadius = AppConstants.kTextFieldCornerRadius
@@ -281,7 +290,7 @@ class NewRecordVC: UIViewController, UITextFieldDelegate {
         return button
     }()
     
-    func createData() -> Bool{
+    func createData() -> Bool {
         if (titleInputField.text == "") {
             alertWithMessage(message: "Title can not be empty")
             return false
@@ -292,6 +301,12 @@ class NewRecordVC: UIViewController, UITextFieldDelegate {
         }
         if (amountInputField.text == "") {
             alertWithMessage(message: "Amount can not be empty")
+            return false
+        }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd"
+        if (dateFormatter.date(from: dateInputField.text!) == nil) {
+            alertWithMessage(message: "Check your date format")
             return false
         }
         
@@ -315,52 +330,6 @@ class NewRecordVC: UIViewController, UITextFieldDelegate {
         }
         
         return true
-    }
-    
-    // below: CoreData function related
-    func updateData() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "User")
-        fetchRequest.predicate = NSPredicate(format: "username = %@", "Ankur1")
-        
-        do {
-            let test = try managedContext.fetch(fetchRequest)
-            let objectUpdate = test[0] as! NSManagedObject
-            objectUpdate.setValue("newName", forKey: "username")
-            objectUpdate.setValue("newmail", forKey: "email")
-            objectUpdate.setValue("newpassword", forKey: "password")
-            
-            do {
-                try managedContext.save()
-            } catch let error as NSError {
-                print("Could not update. \(error), \(error.userInfo)")
-            }
-        } catch let error as NSError {
-            print("Could not update. \(error), \(error.userInfo)")
-        }
-   
-    }
-    
-     func deleteData() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
-        fetchRequest.predicate = NSPredicate(format: "username = %@", "Ankur3")
-       
-        do {
-            let test = try managedContext.fetch(fetchRequest)
-            let objectToDelete = test[0] as! NSManagedObject
-            managedContext.delete(objectToDelete)
-            
-            do {
-                try managedContext.save()
-            } catch {
-                print(error)
-            }
-        } catch {
-            print(error)
-        }
     }
     
     func alertWithMessage(message: String) {

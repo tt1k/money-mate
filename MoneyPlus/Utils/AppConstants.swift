@@ -12,7 +12,7 @@ struct AppConstants {
     static let kPinkColor = UIColor.init(red: 241/255, green: 172/255, blue: 69/255, alpha: 1)
     static let kWhiteColor = UIColor.white
     static let kBlueColor = UIColor.init(red: 74/255, green: 88/255, blue: 235/255, alpha: 1)
-    static let kPurpleColor = UIColor.init(red: 195/255, green: 209/255, blue: 251/255, alpha: 1)
+    static let kPurpleColor = UIColor.init(red: 233/255, green: 69/255, blue: 90/255, alpha: 1)
     static let kBlackColor = UIColor.black
     static let kLightGrayColor = UIColor.lightGray
     static let kScreenWidth = UIScreen.main.bounds.size.width
