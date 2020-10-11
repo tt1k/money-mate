@@ -172,6 +172,9 @@ class ViewController: UIViewController {
 
         do {
             let result = try managedContext.fetch(fetchRequest)
+            income = 0
+            expense = 0
+            totalBalance = 0
             for data in result as! [NSManagedObject] {
                 recordsList.append(data)
                 let type = data.value(forKey: "type") as? Int32
