@@ -21,6 +21,7 @@ class NewRecordVC: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         initNavSetting()
+        addSubviews()
         initLayout()
     }
     
@@ -47,7 +48,7 @@ class NewRecordVC: UIViewController, UITextFieldDelegate {
     }
     
     // below: layout
-    func initLayout() {
+    func addSubviews() {
         view.addSubview(typeLabel)
         view.addSubview(typeControl)
         
@@ -73,7 +74,9 @@ class NewRecordVC: UIViewController, UITextFieldDelegate {
         
         view.addSubview(confirmBtn)
         confirmBtn.addTarget(self, action: #selector(didTapConfirm), for: .touchUpInside)
-        
+    }
+    
+    func initLayout() {
         let margin: Float = Float(AppConstants.kViewMargin)
         
         typeLabel.snp.makeConstraints { (make) -> Void in

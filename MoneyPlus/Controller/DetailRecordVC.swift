@@ -17,6 +17,7 @@ class DetailRecordVC: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         initNavSetting()
+        addSubviews()
         initLayout()
     }
     
@@ -28,12 +29,9 @@ class DetailRecordVC: UIViewController, UITextFieldDelegate {
         view.backgroundColor = AppConstants.kWhiteColor
     }
     
-    func initLayout() {
-        let margin: Float = Float(AppConstants.kViewMargin)
-        
+    func addSubviews() {
         view.addSubview(detailBGImage)
         
-        let mainInfoView = UIView()
         mainInfoView.layer.borderWidth = 1
         mainInfoView.layer.borderColor = AppConstants.kLightGrayColor.cgColor
         mainInfoView.layer.cornerRadius = AppConstants.kCornerRadius
@@ -50,7 +48,11 @@ class DetailRecordVC: UIViewController, UITextFieldDelegate {
         locationLabel.text = "location    : " + String((recordEntity!.value(forKey: "location") as? String)!)
         view.addSubview(detailLabel)
         detailLabel.text = "comment : " + String((recordEntity!.value(forKey: "detail") as? String)!)
-
+    }
+    
+    func initLayout() {
+        let margin: Float = Float(AppConstants.kViewMargin)
+        
         let BGImageWidth: Float = Float(AppConstants.kScreenWidth) - margin * 2
         detailBGImage.snp.makeConstraints { (make) -> Void in
             make.width.equalTo(BGImageWidth)
@@ -88,6 +90,10 @@ class DetailRecordVC: UIViewController, UITextFieldDelegate {
             make.left.equalTo(view).offset(margin)
         }
     }
+    
+    private let mainInfoView: UIView = {
+        return UIView()
+    }()
     
     private let detailBGImage: UIImageView = {
         let imageView = UIImageView()

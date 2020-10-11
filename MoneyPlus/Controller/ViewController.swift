@@ -27,6 +27,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateRecordListView()
+        addSubviews()
         initNavSetting()
         initLayout()
     }
@@ -197,7 +198,7 @@ class ViewController: UIViewController {
         recordsListView.reloadData()
     }
     
-    func initLayout() {
+    func addSubviews() {
         view.addSubview(totalBalanceView)
         view.addSubview(incomeView)
         view.addSubview(expenseView)
@@ -206,7 +207,9 @@ class ViewController: UIViewController {
         recordsListView.delegate = self
         recordsListView.dataSource = self
         view.addSubview(recordsListView)
-        
+    }
+    
+    func initLayout() {
         let margin: Float = Float(AppConstants.kViewMargin)
         let totalBalanceViewHeight: Float = 150
         totalBalanceView.snp.makeConstraints { (make) -> Void in
