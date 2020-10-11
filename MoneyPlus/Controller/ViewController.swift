@@ -16,7 +16,8 @@ class ViewController: UIViewController {
     private let recordsListView: UITableView = {
         let table = UITableView()
         table.indicatorStyle = .white
-        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        table.separatorStyle = .none
+        table.register(RecordTableViewCell.self, forCellReuseIdentifier: "cell")
         return table
     }()
     
@@ -263,9 +264,20 @@ extension ViewController: UITableViewDataSource {
         return recordsList.count
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 72
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "\(recordsList[indexPath.row].value(forKey: "title") as! String)"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! RecordTableViewCell
+        cell.layer.borderWidth = 1
+        cell.layer.borderColor = AppConstants.kLightGrayColor.cgColor
+        cell.layer.cornerRadius = AppConstants.kCornerRadius / 2
+        cell.titleLabel.text = recordsList[indexPath.row].value(forKey: "title") as? String
+        cell.dateLabel.text = recordsList[indexPath.row].value(forKey: "date") as? String
+        cell.amountLabel.text = "$" + String((recordsList[indexPath.row].value(forKey: "amount") as? Double)!)
+        cell.selectionStyle = .none
         return cell
     }
+
 }

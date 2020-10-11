@@ -17,6 +17,7 @@
 		E295EDAE2531DFCE001845BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E295EDAD2531DFCE001845BF /* Assets.xcassets */; };
 		E295EDB12531DFCE001845BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E295EDAF2531DFCE001845BF /* LaunchScreen.storyboard */; };
 		E2E5712325321C5100FEBBC8 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E5712225321C5100FEBBC8 /* AppConstants.swift */; };
+		E2F189D72532A65000659A92 /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F189D62532A65000659A92 /* RecordTableViewCell.swift */; };
 		E2FBB90D253241E000DA1A5F /* NewRecordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FBB90C253241E000DA1A5F /* NewRecordVC.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		E295EDB02531DFCE001845BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E295EDB22531DFCE001845BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2E5712225321C5100FEBBC8 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		E2F189D62532A65000659A92 /* RecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
 		E2FBB90C253241E000DA1A5F /* NewRecordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRecordVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -131,6 +133,7 @@
 			children = (
 				E2E5712225321C5100FEBBC8 /* AppConstants.swift */,
 				E22DE9F325326C240000E391 /* RecordData.xcdatamodeld */,
+				E2F189D62532A65000659A92 /* RecordTableViewCell.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -237,6 +240,7 @@
 				E2FBB90D253241E000DA1A5F /* NewRecordVC.swift in Sources */,
 				E271CC2525328D5E00AB39D5 /* DetailRecordVC.swift in Sources */,
 				E295EDA72531DFCD001845BF /* SceneDelegate.swift in Sources */,
+				E2F189D72532A65000659A92 /* RecordTableViewCell.swift in Sources */,
 				E2E5712325321C5100FEBBC8 /* AppConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
