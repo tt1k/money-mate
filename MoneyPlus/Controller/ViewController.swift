@@ -37,10 +37,8 @@ class ViewController: UIViewController {
         let view = UIView()
         view.backgroundColor = AppConstants.kTotalBalanceColor
         view.layer.cornerRadius = AppConstants.kCornerRadius
-        if UITraitCollection.current.userInterfaceStyle == .dark {
-            view.layer.borderWidth = 1
-            view.layer.borderColor = AppConstants.kWhiteColor.cgColor
-        }
+        view.layer.borderWidth = 1
+        view.layer.borderColor = AppConstants.kWhiteColor.cgColor
         
         let title = UILabel()
         title.text = "Total Balance"
@@ -68,10 +66,8 @@ class ViewController: UIViewController {
         let view = UIView()
         view.backgroundColor = AppConstants.kIncomeColor
         view.layer.cornerRadius = AppConstants.kCornerRadius
-        if UITraitCollection.current.userInterfaceStyle == .dark {
-            view.layer.borderWidth = 1
-            view.layer.borderColor = AppConstants.kWhiteColor.cgColor
-        }
+        view.layer.borderWidth = 1
+        view.layer.borderColor = AppConstants.kWhiteColor.cgColor
         
         let title = UILabel()
         title.text = "Income"
@@ -99,10 +95,8 @@ class ViewController: UIViewController {
         let view = UIView()
         view.backgroundColor = AppConstants.kExpenseColor
         view.layer.cornerRadius = AppConstants.kCornerRadius
-        if UITraitCollection.current.userInterfaceStyle == .dark {
-            view.layer.borderWidth = 1
-            view.layer.borderColor = AppConstants.kWhiteColor.cgColor
-        }
+        view.layer.borderWidth = 1
+        view.layer.borderColor = AppConstants.kWhiteColor.cgColor
         
         let title = UILabel()
         title.text = "Expense"
