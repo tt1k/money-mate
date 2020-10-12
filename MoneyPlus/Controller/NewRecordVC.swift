@@ -31,7 +31,7 @@ class NewRecordVC: UIViewController {
     }
     
     @objc func didTapConfirm() {
-        if (createData() == true) {
+        if createData() == true {
             updateRootVCData?()
             dismiss(animated: true)
         }
@@ -292,21 +292,21 @@ class NewRecordVC: UIViewController {
     }()
     
     func createData() -> Bool {
-        if (titleInputField.text == "") {
+        if titleInputField.text == "" {
             alertWithMessage(message: "Title can not be empty")
             return false
         }
-        if (dateInputField.text == "") {
+        if dateInputField.text == "" {
             alertWithMessage(message: "Date can not be empty")
             return false
         }
-        if (amountInputField.text == "") {
+        if amountInputField.text == "" {
             alertWithMessage(message: "Amount can not be empty")
             return false
         }
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd"
-        if (dateFormatter.date(from: dateInputField.text!) == nil) {
+        if dateFormatter.date(from: dateInputField.text!) == nil {
             alertWithMessage(message: "Check your date format")
             return false
         }

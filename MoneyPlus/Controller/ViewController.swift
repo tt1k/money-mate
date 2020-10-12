@@ -191,7 +191,7 @@ class ViewController: UIViewController {
                 recordsList.append(data)
                 let type = data.value(forKey: "type") as? Int32
                 let amount = (data.value(forKey: "amount") as? Double)!
-                if (type == 0) {
+                if type == 0 {
                     income += amount
                     totalBalance += amount
                 } else {
