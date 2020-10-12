@@ -26,6 +26,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = AppConstants.kBackgroudColor
         updateRecordListView()
         addSubviews()
         initNavSetting()
@@ -34,13 +35,17 @@ class ViewController: UIViewController {
 
     private let totalBalanceView: UIView = {
         let view = UIView()
-        view.backgroundColor = AppConstants.kBlueColor
+        view.backgroundColor = AppConstants.kTotalBalanceColor
         view.layer.cornerRadius = AppConstants.kCornerRadius
+        if UITraitCollection.current.userInterfaceStyle == .dark {
+            view.layer.borderWidth = 1
+            view.layer.borderColor = AppConstants.kWhiteColor.cgColor
+        }
         
         let title = UILabel()
         title.text = "Total Balance"
         title.font = UIFont.systemFont(ofSize: 40, weight: UIFont.Weight.bold)
-        title.textColor = AppConstants.kWhiteColor
+        title.textColor = AppConstants.kTotalBalanceTitleColor
         view.addSubview(title)
         
         title.snp.makeConstraints { (make) -> Void in
@@ -61,13 +66,17 @@ class ViewController: UIViewController {
     
     private let incomeView: UIView = {
         let view = UIView()
-        view.backgroundColor = AppConstants.kPinkColor
+        view.backgroundColor = AppConstants.kIncomeColor
         view.layer.cornerRadius = AppConstants.kCornerRadius
+        if UITraitCollection.current.userInterfaceStyle == .dark {
+            view.layer.borderWidth = 1
+            view.layer.borderColor = AppConstants.kWhiteColor.cgColor
+        }
         
         let title = UILabel()
         title.text = "Income"
         title.font = UIFont.systemFont(ofSize: 28, weight: UIFont.Weight.bold)
-        title.textColor = AppConstants.kWhiteColor
+        title.textColor = AppConstants.kIncomeTitleColor
         view.addSubview(title)
         
         title.snp.makeConstraints { (make) -> Void in
@@ -88,13 +97,17 @@ class ViewController: UIViewController {
     
     private let expenseView: UIView = {
         let view = UIView()
-        view.backgroundColor = AppConstants.kPurpleColor
+        view.backgroundColor = AppConstants.kExpenseColor
         view.layer.cornerRadius = AppConstants.kCornerRadius
+        if UITraitCollection.current.userInterfaceStyle == .dark {
+            view.layer.borderWidth = 1
+            view.layer.borderColor = AppConstants.kWhiteColor.cgColor
+        }
         
         let title = UILabel()
         title.text = "Expense"
         title.font = UIFont.systemFont(ofSize: 28, weight: UIFont.Weight.bold)
-        title.textColor = AppConstants.kWhiteColor
+        title.textColor = AppConstants.kExpenseTitleColor
         view.addSubview(title)
         
         title.snp.makeConstraints { (make) -> Void in
@@ -131,7 +144,6 @@ class ViewController: UIViewController {
         let label = UILabel()
         label.text = "Recent Transactions"
         label.font = UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.bold)
-        label.textColor = AppConstants.kBlackColor
         view.addSubview(label)
         
         label.snp.makeConstraints { (make) -> Void in
@@ -144,12 +156,11 @@ class ViewController: UIViewController {
     
     func initNavSetting() {
         edgesForExtendedLayout = UIRectEdge.bottom
-        navigationController?.navigationBar.backgroundColor = .white
-        navigationController?.navigationBar.barTintColor = .white
+        navigationController?.navigationBar.backgroundColor = AppConstants.kBackgroudColor
+        navigationController?.navigationBar.barTintColor = AppConstants.kBackgroudColor
         navigationController?.navigationBar.shadowImage = UIImage()
-        view.backgroundColor = AppConstants.kWhiteColor
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addDidTap))
-        navigationItem.rightBarButtonItem?.tintColor = AppConstants.kBlackColor
+        navigationItem.rightBarButtonItem?.tintColor = AppConstants.kAntiBackgroudColor
     }
     
     @objc func addDidTap() {

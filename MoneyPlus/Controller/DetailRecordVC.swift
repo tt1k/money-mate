@@ -16,6 +16,7 @@ class DetailRecordVC: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = AppConstants.kBackgroudColor
         initNavSetting()
         addSubviews()
         initLayout()
@@ -23,10 +24,9 @@ class DetailRecordVC: UIViewController, UITextFieldDelegate {
     
     func initNavSetting() {
         edgesForExtendedLayout = UIRectEdge.bottom
-        navigationController?.navigationBar.backgroundColor = .white
-        navigationController?.navigationBar.barTintColor = .white
+        navigationController?.navigationBar.backgroundColor = AppConstants.kBackgroudColor
+        navigationController?.navigationBar.barTintColor = AppConstants.kBackgroudColor
         navigationController?.navigationBar.shadowImage = UIImage()
-        view.backgroundColor = AppConstants.kWhiteColor
     }
     
     func addSubviews() {
@@ -111,28 +111,24 @@ class DetailRecordVC: UIViewController, UITextFieldDelegate {
     private let dateLabel: UILabel = {
         let label = UILabel()
         label.font = AppConstants.kTitleFont
-        label.textColor = AppConstants.kBlackColor
         return label
     }()
     
     private let amountLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 28, weight: UIFont.Weight.bold)
-        label.textColor = AppConstants.kBlackColor
         return label
     }()
     
     private let locationLabel: UILabel = {
         let label = UILabel()
         label.font = AppConstants.kTitleFont
-        label.textColor = AppConstants.kBlackColor
         return label
     }()
     
     private let detailLabel: UILabel = {
         let label = UILabel()
         label.font = AppConstants.kTitleFont
-        label.textColor = AppConstants.kBlackColor
         return label
     }()
 }

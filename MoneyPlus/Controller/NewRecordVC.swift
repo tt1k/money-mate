@@ -20,6 +20,7 @@ class NewRecordVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = AppConstants.kBackgroudColor
         initNavSetting()
         addSubviews()
         initLayout()
@@ -39,12 +40,11 @@ class NewRecordVC: UIViewController {
     // below: nav
     func initNavSetting() {
         edgesForExtendedLayout = UIRectEdge.bottom
-        navigationController?.navigationBar.backgroundColor = .white
-        navigationController?.navigationBar.barTintColor = .white
+        navigationController?.navigationBar.backgroundColor = AppConstants.kBackgroudColor
+        navigationController?.navigationBar.barTintColor = AppConstants.kBackgroudColor
         navigationController?.navigationBar.shadowImage = UIImage()
-        view.backgroundColor = AppConstants.kWhiteColor
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(closeDidTap))
-        navigationItem.rightBarButtonItem?.tintColor = AppConstants.kBlackColor
+        navigationItem.rightBarButtonItem?.tintColor = AppConstants.kAntiBackgroudColor
     }
     
     // below: layout
@@ -164,7 +164,7 @@ class NewRecordVC: UIViewController {
         sc.selectedSegmentIndex = 0
         sc.layer.cornerRadius = AppConstants.kTextFieldCornerRadius
         sc.backgroundColor = AppConstants.kBlackColor
-        sc.selectedSegmentTintColor = AppConstants.kPinkColor
+        sc.selectedSegmentTintColor = AppConstants.kLightGrayColor
         sc.setTitleTextAttributes([
             NSAttributedString.Key.foregroundColor: AppConstants.kWhiteColor,
             NSAttributedString.Key.font: AppConstants.kTitleFont
@@ -176,7 +176,6 @@ class NewRecordVC: UIViewController {
         let label = UILabel()
         label.text = "Title"
         label.font = AppConstants.kTitleFont
-        label.textColor = AppConstants.kBlackColor
         return label
     }()
     
@@ -196,7 +195,6 @@ class NewRecordVC: UIViewController {
         let label = UILabel()
         label.text = "Date"
         label.font = AppConstants.kTitleFont
-        label.textColor = AppConstants.kBlackColor
         return label
     }()
     
@@ -220,7 +218,6 @@ class NewRecordVC: UIViewController {
         let label = UILabel()
         label.text = "Amount"
         label.font = AppConstants.kTitleFont
-        label.textColor = AppConstants.kBlackColor
         return label
     }()
     
@@ -240,7 +237,6 @@ class NewRecordVC: UIViewController {
         let label = UILabel()
         label.text = "Type"
         label.font = AppConstants.kTitleFont
-        label.textColor = AppConstants.kBlackColor
         return label
     }()
     
@@ -248,7 +244,6 @@ class NewRecordVC: UIViewController {
         let label = UILabel()
         label.text = "Location(optional)"
         label.font = AppConstants.kTitleFont
-        label.textColor = AppConstants.kBlackColor
         return label
     }()
 
@@ -268,7 +263,6 @@ class NewRecordVC: UIViewController {
         let label = UILabel()
         label.text = "Detail(optional)"
         label.font = AppConstants.kTitleFont
-        label.textColor = AppConstants.kBlackColor
         return label
     }()
     
@@ -289,8 +283,11 @@ class NewRecordVC: UIViewController {
         button.setTitle("Save", for: .normal)
         button.titleLabel?.textColor = AppConstants.kWhiteColor
         button.titleLabel?.font = AppConstants.kTitleFont
-        button.backgroundColor = AppConstants.kPinkColor
+        button.backgroundColor = AppConstants.kIncomeColor
         button.layer.cornerRadius = AppConstants.kTextFieldCornerRadius
+        if UITraitCollection.current.userInterfaceStyle == .dark {
+            button.backgroundColor = AppConstants.kLightGrayColor
+        }
         return button
     }()
     
