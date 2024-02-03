@@ -1,4 +1,4 @@
-MoneyPlus
+MoneyMate
 =====
 
 An open-source app which can help you record income and expense.
