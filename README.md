@@ -35,15 +35,11 @@ If you want to build iOS apps with out Storyboard, I believe this can help.
 
 - iOS >= 13.0
 - Swift 5
-- Xcode 12.0.1
+- Xcode 15
 
 
 
 ### 0x04 TODO
-
-- [ ] Edit records
-
-- [ ] Add a statistical chart
 
 - [ ] Dark mode support
 
@@ -51,5 +47,5 @@ If you want to build iOS apps with out Storyboard, I believe this can help.
 
 ### 0x05 Screenshot
 
-![img-1](./images/main.png)
+![img-1](./images/main.jpg)
 
